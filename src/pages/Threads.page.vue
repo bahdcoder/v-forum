@@ -1,8 +1,13 @@
 <template>
-	<div>
-		<h1 class="text-center">
-			These are all threads we have available
-		</h1>
+	<div class="container">
+		<div class="panel panel-default" v-if="threads" v-for="thread in threads">
+			<div class="panel-heading">
+				{{ thread.title }}
+			</div>
+			<div class="panel-body">
+				{{ thread.body }}
+			</div>
+		</div>
 	</div>
 </template>
 
@@ -10,11 +15,17 @@
 	import axios from 'axios'
 	export default {
 		mounted() {
-			axios.get('https://v-forum-api.bahdcasts.com/api/threads')
-				.then(resp => {
-				 	console.log(resp.data)
-				 	this.$store.commit('threads', { threads: resp.data })
-				})
+			this.getThreads()
+		},
+		methods: {
+			getThreads() {
+				this.$store.dispatch('getThreads')
+			}
+		},
+		computed: {
+			threads() {
+				return this.$store.getters.threads
+			}
 		}
 	}
 </script>
