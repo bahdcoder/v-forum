@@ -8,6 +8,14 @@
 				{{ thread.body }}
 			</div>
 		</div>
+
+		<paginate
+		  :page-count="20"
+		  :click-handler="getThreadsData"
+		  :prev-text="'Prev'"
+		  :next-text="'Next'"
+		  :container-class="'pagination'">
+		</paginate>
 	</div>
 </template>
 
@@ -20,6 +28,9 @@
 		methods: {
 			getThreads() {
 				this.$store.dispatch('getThreads')
+			},
+			getThreadsData(page) {
+				console.log(page)
 			}
 		},
 		computed: {

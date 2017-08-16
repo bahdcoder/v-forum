@@ -6,6 +6,7 @@ import store from './store'
 import router from './router'
 import Paginate from 'vuejs-paginate'
 
+
 require('./assets/app.css')
 Vue.config.productionTip = false
 
