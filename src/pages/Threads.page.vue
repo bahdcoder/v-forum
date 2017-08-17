@@ -10,11 +10,11 @@
 		</div>
 
 		<paginate
-		  :page-count="20"
+		  :page-count="threadsMetaData.total / threadsMetaData.per_page"
 		  :click-handler="getThreadsData"
 		  :prev-text="'Prev'"
 		  :next-text="'Next'"
-		  :container-class="'pagination'">
+		  :container-class="'pagination'" v-if="threadsMetaData.total">
 		</paginate>
 	</div>
 </template>
@@ -26,16 +26,19 @@
 			this.getThreads()
 		},
 		methods: {
-			getThreads() {
-				this.$store.dispatch('getThreads')
+			getThreads(pageNumber = 1) {
+				this.$store.dispatch('getThreads', { pageNumber })
 			},
 			getThreadsData(page) {
-				console.log(page)
+				this.getThreads(page)
 			}
 		},
 		computed: {
 			threads() {
 				return this.$store.getters.threads
+			},
+			threadsMetaData() {
+				return this.$store.getters.threadsMetaData
 			}
 		}
 	}
