@@ -5,11 +5,12 @@ import App from './App'
 import store from './store'
 import router from './router'
 import Paginate from 'vuejs-paginate'
-
+import Thread from '@/components/Thread'
 
 require('./assets/app.css')
 Vue.config.productionTip = false
 
+Vue.component('thread', Thread)
 Vue.component('paginate', Paginate)
 
 /* eslint-disable no-new */

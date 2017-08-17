@@ -4,5 +4,11 @@ export default {
 	},
 	threadsMetaData(state, payload) {
 		state.threadsMetaData = payload.threadsMetaData
+	},
+	threadReplies(state, payload) {
+		state.replies = payload.replies
+	},
+	repliesMetaData(state, payload) {
+		state.repliesMetaData = payload.repliesMetaData
 	}
 }

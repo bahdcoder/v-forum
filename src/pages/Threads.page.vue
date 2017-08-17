@@ -1,26 +1,22 @@
 <template>
 	<div class="container">
-		<div class="panel panel-default" v-if="threads" v-for="thread in threads">
-			<div class="panel-heading">
-				{{ thread.title }}
-			</div>
-			<div class="panel-body">
-				{{ thread.body }}
-			</div>
-		</div>
+		<thread v-for="thread in threads" v-if="threads" :key="thread.id" :thread="thread"></thread>
 
-		<paginate
-		  :page-count="threadsMetaData.total / threadsMetaData.per_page"
-		  :click-handler="getThreadsData"
-		  :prev-text="'Prev'"
-		  :next-text="'Next'"
-		  :container-class="'pagination'" v-if="threadsMetaData.total">
-		</paginate>
+		<div class="text-center">
+			<paginate
+			  :page-count="threadsMetaData.total / threadsMetaData.per_page"
+			  :click-handler="getThreadsData"
+			  :prev-text="'Prev'"
+			  :next-text="'Next'"
+			  :container-class="'pagination'" v-if="threadsMetaData.total">
+			</paginate>
+		</div>
 	</div>
 </template>
 
 <script>
 	import axios from 'axios'
+
 	export default {
 		mounted() {
 			this.getThreads()

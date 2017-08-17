@@ -1,4 +1,6 @@
 export default {
 	threads: [],
-	threadsMetaData: {}
+	threadsMetaData: {},
+	replies: [],
+	repliesMetaData: {}
 }
