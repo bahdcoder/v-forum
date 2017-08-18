@@ -22,6 +22,20 @@ export default {
 		}).then(resp => {
 			console.log(resp)
 		})
+	},
 
+	/* Authentication actions */
+	register(context, payload) {
+		return new Promise((resolve, reject) => {
+			axios.post(`${CONFIG.API_URL}/register`, {
+				name: payload.name,
+				email: payload.email,
+				password: payload.password 
+			}).then(resp => {
+				return resolve(resp.data)
+			}).catch(error => {
+				return reject(error.response.data)
+			})
+		})
 	}
 }
