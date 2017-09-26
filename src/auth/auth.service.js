@@ -24,6 +24,10 @@ class Auth {
             return null 
         }
     }
+
+    getAuthToken() {
+        return localStorage.getItem('token')
+    }
 }
 
 export default new Auth 

@@ -4,8 +4,8 @@
 		
 		<reply :reply="reply" v-for="reply in replies" v-if="replies"></reply>
 
-		<create-reply :threadId="thread.id"></create-reply>
-
+		<create-reply :threadId="thread.id" v-if="authenticated"></create-reply>
+		<router-link to="/auth/register" v-if="!authenticated">Sign in to Participate</router-link>	
 		<div class="text-center">
 			<paginate
 			  :page-count="Math.ceil(repliesMetaData.total / repliesMetaData.per_page)"
@@ -20,12 +20,18 @@
 
 <script>
 	import Reply from '@/components/Reply'
+	import Auth from '@/auth/auth.service'
 	import CreateReply from '@/components/Create-reply'
-
+	
 	export default {
 		components: {
 			reply: Reply,
 			"create-reply": CreateReply
+		},
+		data() {
+			return {
+				authenticated: Auth.isAuthenticated() 
+			}
 		},
 		mounted() {
 			this.getThreadReplies()

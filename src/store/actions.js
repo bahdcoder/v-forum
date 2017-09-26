@@ -18,7 +18,7 @@ export default {
 	},
 	addReply(context, payload) {
 		axios.post(`${CONFIG.API_URL}/threads/${payload.threadId}/replies`, {
-			reply: payload.reply 
+			body : payload.reply 
 		}).then(resp => {
 			console.log(resp)
 		})

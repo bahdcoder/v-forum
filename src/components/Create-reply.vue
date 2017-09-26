@@ -8,7 +8,7 @@
 
 <script>
 	export default {
-		prop: ['threadId'],
+		props: ['threadId'],
 		data() {
 			return { 
 				reply: ''
@@ -16,7 +16,7 @@
 		},
 		methods: {
 			addReply() {
-				this.$store.dispatch('addReply', { reply: this.reply, thread_id: this.threadId})
+				this.$store.dispatch('addReply', { reply: this.reply, threadId: this.threadId})
 			}
 		}
 	}
