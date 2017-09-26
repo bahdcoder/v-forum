@@ -17,6 +17,9 @@
 		methods: {
 			addReply() {
 				this.$store.dispatch('addReply', { reply: this.reply, threadId: this.threadId})
+						   .then((resp) => {
+							   this.$parent.$emit('added-reply')
+						   })
 			}
 		}
 	}

@@ -7,6 +7,10 @@
 			<div class="panel-body">
 				{{ thread.body }}
 			</div>
+
+			<div class="panel-footer">
+				<span>{{ thread.creator.name }} </span>
+			</div>
 		</div>
 	</div>
 </template>

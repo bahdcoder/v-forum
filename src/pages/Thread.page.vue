@@ -8,7 +8,7 @@
 		<router-link to="/auth/register" v-if="!authenticated">Sign in to Participate</router-link>	
 		<div class="text-center">
 			<paginate
-			  :page-count="Math.ceil(repliesMetaData.total / repliesMetaData.per_page)"
+			  :page-count="pageCount"
 			  :click-handler="getRepliesData"
 			  :prev-text="'Prev'"
 			  :next-text="'Next'"
@@ -35,6 +35,9 @@
 		},
 		mounted() {
 			this.getThreadReplies()
+			this.$on('added-reply', () => {
+				this.getThreadReplies(this.pageCount)
+			})
 		},
 		methods: {
 			getThreadReplies(pageNumber = 1) {
@@ -53,6 +56,9 @@
 			},
 			repliesMetaData() {
 				return this.$store.state.repliesMetaData
+			},
+			pageCount() {
+				return Math.ceil(this.repliesMetaData.total / this.repliesMetaData.per_page)
 			}
 		}
 	}

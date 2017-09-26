@@ -17,10 +17,12 @@ export default {
 				})
 	},
 	addReply(context, payload) {
-		axios.post(`${CONFIG.API_URL}/threads/${payload.threadId}/replies`, {
-			body : payload.reply 
-		}).then(resp => {
-			console.log(resp)
+		return new Promise((res, rej) => {
+			axios.post(`${CONFIG.API_URL}/threads/${payload.threadId}/replies`, {
+				body : payload.reply 
+			}).then(resp => {
+				return res(resp.data)
+			})
 		})
 	},
 
