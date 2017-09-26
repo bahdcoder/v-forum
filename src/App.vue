@@ -14,8 +14,7 @@
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
-            <li><a href="#">Link</a></li>
+            <li><router-link to="/threads">Threads</router-link></li>
           </ul>
           <form class="navbar-form navbar-left">
             <div class="form-group">
@@ -24,7 +23,8 @@
             <button type="submit" class="btn btn-default">Submit</button>
           </form>
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">Link</a></li>
+            <li><router-link v-if="!authenticated" to="/auth/register">Register</router-link></li>
+            <li><router-link v-if="authenticated && user" to="/">Hey, {{ user.name }}</router-link></li>
           </ul>
         </div>
       </div>
@@ -34,8 +34,15 @@
 </template>
 
 <script>
+import Auth from './auth/auth.service'
 export default {
-  name: 'app'
+  name: 'app',
+  data() {
+    return {
+      user: Auth.getAuthUser(),
+      authenticated: Auth.isAuthenticated() 
+    }
+  }
 }
 </script>
 

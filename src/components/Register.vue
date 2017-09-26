@@ -29,7 +29,7 @@
 
 <script>
 	import RegistrationValidator from '@/validators/registration.validator'
-
+	import Auth from './../auth/auth.service'
 	export default {
 		data() {
 			return { 
@@ -53,7 +53,8 @@
 						email: this.email,
 						password: this.password
 					}).then(resp => {
-						console.log(resp)
+						Auth.loginUser(resp.data.user, resp.data.access_token)
+						this.$router.push('/')
 					}).catch(error => {
 						let errors = Object.values(error.data)
 						let arrOfErrors = errors.reduce((a, b) => {
