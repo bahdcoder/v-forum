@@ -13,7 +13,6 @@ export default new Router({
     	{ path: '/', name: 'Hello', component: Hello },
     	{ path: '/threads', name: 'Threads', component: ThreadsPage },
     	{ path: '/thread/:id', name: 'Thread', component: ThreadPage },
-
     	{ path: '/auth/register', name: 'Register', component: RegisterPage }
   	]
 })
