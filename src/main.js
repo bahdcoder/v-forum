@@ -10,6 +10,8 @@ import Thread from '@/components/Thread'
 require('./assets/app.css')
 Vue.config.productionTip = false
 
+window.customEvents = new Vue() 
+
 Vue.component('thread', Thread)
 Vue.component('paginate', Paginate)
 

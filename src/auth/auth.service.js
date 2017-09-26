@@ -2,11 +2,15 @@ class Auth {
     loginUser(user, token) {
         localStorage.setItem('user', JSON.stringify(user))
         localStorage.setItem('token', token)
+
+        window.customEvents.$emit('auth-state-changed')
     }
 
     logoutUser() {
         localStorage.removeItem('user')
         localStorage.removeItem('token')
+
+        window.customEvents.$emit('auth-state-changed')
     }
 
     isAuthenticated() {

@@ -37,6 +37,12 @@
 import Auth from './auth/auth.service'
 export default {
   name: 'app',
+  mounted() {
+    window.customEvents.$on('auth-state-changed', () => {
+      this.user = Auth.getAuthUser() 
+      this.authenticated = Auth.isAuthenticated() 
+    })
+  },
   data() {
     return {
       user: Auth.getAuthUser(),
